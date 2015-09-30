@@ -1,14 +1,11 @@
 ## Load ngram_frequency data
 
+library(data.table)
+library(dplyr)
+library(stringr)
 
-library(data.table)
-library(dplyr)
-library(stringr)
-library(shiny)
-library(stringr)
-library(dplyr)
-library(data.table)
-corpus <- read.table("ngram_freq.csv", header = T, stringsAsFactors = F)
+
+corpus <- read.csv("ngram_freq.csv", header = T, stringsAsFactors = F)
 corpus <- as.tbl(corpus)
 four_gram <- filter(corpus, n_gram == "four")
 tri_gram <- filter(corpus, n_gram == "tri")
@@ -52,9 +49,9 @@ prediction <- function(x){
       pred <- filter(bi_gram, mat_word == x)}
   }
   pred <- arrange(pred, desc(counts))
-  pred <- head(pred, 5)
-  pred <- pred$pred_word
+  pred <- select(pred, pred_word, counts)
   pred <- as.data.frame(pred)
-  names(pred) <- "next_word"
-  pred
-}
+  
+  return(pred)
+  
+  }

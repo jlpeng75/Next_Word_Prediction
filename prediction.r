@@ -1,9 +1,9 @@
 ## Load ngram_frequency data
-setwd("C:/Users/jpeng/Documents/courses/DataScienceCapstone/final/Next_Word_Prediction")
 
 library(data.table)
 library(dplyr)
 library(stringr)
+
 
 corpus <- read.table("ngram_freq.csv", header = T, stringsAsFactors = F)
 corpus <- as.tbl(corpus)
@@ -48,9 +48,10 @@ prediction <- function(x){
     if (x %in% bi_gram$mat_word){
       pred <- filter(bi_gram, mat_word == x)}
   }
-  pred <- head(arrange(pred, desc(counts)), 5)
-  pred <- pred$pred_word
+  pred <- arrange(pred, desc(counts))
+  pred <- select(pred, pred_word, counts)
   pred <- as.data.frame(pred)
-  names(pred) <- "next_word"
-  pred
-}
+  
+  return(pred)
+  
+  }

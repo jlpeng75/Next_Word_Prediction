@@ -8,24 +8,38 @@ shinyUI(pageWithSidebar(
     h4('Instructions:'),
     p('1. Type in a word or phrase into the "Text Input" box'),
     p('2. Click the "Predict Next Word" button'),
-    p('3. The top five next-word prediction will be displayed on the "prediction" tab'),
-    p('4. Select the other tab to view summary of the project') 
+    p('3. The top ten next-word prediction will be displayed on the "prediction_table" tab'),
+    p('4. Select other tabs to view the wordcloud and project summary') 
     
   ),
   
   mainPanel(
     tabsetPanel(
-        tabPanel("Prediction",
+        tabPanel("Best_Prediction",
                  h3('next word prediction'),
                  h4('You entered'),
                  verbatimTextOutput("sentence"),
-                 h4('next word'),
-                 verbatimTextOutput("pred")
-                 
-        ),
+                 h4('Best Prediction'),
+                 verbatimTextOutput("best_prediction")
+                 ),
+        
+        tabPanel("Pred_table",
+                 h3("Top 10 possible prediction and counts"),
+                 br(),
+                 dataTableOutput('pred_table')
+                 ),
+        
+        tabPanel("wordcloud",
+                 h3('Wordcloud: Top 100 Predictions'),
+                 em('Wordcloud may take a few seconds to load...'),
+                 br(), 
+                 br(),
+                 plotOutput(outputId = "wordcloud", height = "450px", width = "450px")
+                 ),
         
         tabPanel("About",
                  h3('Text-Prediction App, Version 1.0'),
+                 a("Source Code (Github)", href="https://github.com/jlpeng75/Next_Word_Prediction", style="color: limegreen"),
                  h3('Application Summary'),
                  HTML("This application, made specifically for the capstone project of the Johns Hopkins University Data Science Specialization Certificate Program"),
                  

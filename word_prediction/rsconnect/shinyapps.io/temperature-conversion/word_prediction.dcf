@@ -2,7 +2,8 @@ name: word_prediction
 account: temperature-conversion
 server: shinyapps.io
 appId: 54795
-bundleId: 274868
-url:
-      https://temperature-conversion.shinyapps.io/word_prediction
-when: 1443326740.25881
+bundleId: 277465
+url: https://jianling-peng.shinyapps.io/word_prediction
+when: 1443571350.9844
+asMultiple: FALSE
+asStatic: FALSE

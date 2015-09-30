@@ -38,8 +38,8 @@ mat_word <- word(ngram_freq$term, 1, -2)
 pred_word <- word(ngram_freq$term, -1)
 ngram_freq$mat_word <- mat_word
 ngram_freq$pred_word <- pred_word
-ngram_freq <- select(ngram_freq, n_gram,counts, mat_word, pred_word)
 
+ngram_freq <- select(ngram_freq, n_gram, counts, mat_word, pred_word)
 
-write.table(ngram_freq, file = "ngram_freq.csv")
+write.csv(ngram_freq, file = "ngram_freq.csv", fileEncoding = "UTF-8")
 
